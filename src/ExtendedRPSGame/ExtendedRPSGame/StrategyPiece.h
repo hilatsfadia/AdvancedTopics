@@ -25,6 +25,7 @@ private:
 	bool mIsThreatened = false;
 	bool mIsThreathening = false;
 	bool mIsMovingPiece = false;
+	bool mIsDiscovered = false; // Is curr player piece discovered by the opponent
 
 public:
 	StrategyPiece(int ownerNum, unique_ptr<Piece> uncoveredPiece);
@@ -58,6 +59,11 @@ public:
 	// Returns true iff this piece is threatening an enemy piece (one or more)
 	bool GetIsThreathening() const { return mIsThreathening; }
 	void SetIsThreathening(bool isThreatening) { mIsThreathening = isThreatening; }
+
+
+	bool GetIsDiscovered() const { return mIsDiscovered; }
+	void SetIsDiscovered(bool isDiscovered) { mIsDiscovered = isDiscovered; }
+
 
 	int GetStrategyPieceID() const { return mStrategyPieceID; }
 
