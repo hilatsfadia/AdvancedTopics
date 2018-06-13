@@ -120,7 +120,7 @@ private:
 	// Updates the strategy inner represantations according to the given board.
 	void updateStrategyAccordingToBoard(const Board& b);
 
-	void updateStrategyAccordingToCount();
+	//void updateStrategyAccordingToCount();
 
 
 	//-----------------------------------------------------------

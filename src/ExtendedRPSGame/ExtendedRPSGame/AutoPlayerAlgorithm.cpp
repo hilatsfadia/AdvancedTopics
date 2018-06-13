@@ -189,34 +189,34 @@ void AutoPlayerAlgorithm::updateStrategyAccordingToBoard(const Board & b)
 	}
 }
 
-void AutoPlayerAlgorithm::updateStrategyAccordingToCount() { //TODO: where to call it?. ADDED
-	char pieceToUpdate;
-
-	for (std::map<char,int>::iterator iter = mOpponentCoveredPiecesCounter.begin(); iter != mOpponentCoveredPiecesCounter.end(); iter++) {
-		if (iter->second == mOpponentNumCoveredMovablePieces
-			&& iter->first != JOKER_CHAR && iter->first != BOMB_CHAR && iter->first != FLAG_CHAR) {
-			pieceToUpdate = iter->first;
-			for (int row = 1; row <= M; row++)
-			{
-				for (int col = 1; col <= N; col++)
-				{
-					if (!mPlayersStrategyBoards[mOpponent - 1].IsEmptyInPosition(col, row)
-						&& mPlayersStrategyBoards[mOpponent - 1].PeekPieceInPosition(col, row).GetIsMovingPiece()){
-
-						mPlayersStrategyBoards[mOpponent - 1].PeekPieceInPosition(col, row).UncoverPiece(pieceToUpdate); //what if joker?
-						mOpponentCoveredPiecesCounter[pieceToUpdate]--;
-						mOpponentNumCoveredPieces--;
-						mOpponentNumCoveredMovablePieces--;
-
-
-				}
-			}
-		}
-		return;
-	}
-}
-
-}
+//void AutoPlayerAlgorithm::updateStrategyAccordingToCount() { //TODO: where to call it?. ADDED
+//	char pieceToUpdate;
+//
+//	for (std::map<char,int>::iterator iter = mOpponentCoveredPiecesCounter.begin(); iter != mOpponentCoveredPiecesCounter.end(); iter++) {
+//		if ((iter->second == mOpponentNumCoveredMovablePieces) && (iter->second == mOpponentNumCoveredPieces - F)
+//			&& iter->first != JOKER_CHAR && iter->first != BOMB_CHAR && iter->first != FLAG_CHAR) {
+//			pieceToUpdate = iter->first;
+//			for (int row = 1; row <= M; row++)
+//			{
+//				for (int col = 1; col <= N; col++)
+//				{
+//					if (!mPlayersStrategyBoards[mOpponent - 1].IsEmptyInPosition(col, row)
+//						&& mPlayersStrategyBoards[mOpponent - 1].PeekPieceInPosition(col, row).GetIsMovingPiece()){
+//
+//						mPlayersStrategyBoards[mOpponent - 1].PeekPieceInPosition(col, row).UncoverPiece(pieceToUpdate); //what if joker?
+//						mOpponentCoveredPiecesCounter[pieceToUpdate]--;
+//						mOpponentNumCoveredPieces--;
+//						mOpponentNumCoveredMovablePieces--;
+//
+//
+//				}
+//			}
+//		}
+//		return;
+//	}
+//}
+//
+//}
 
 void AutoPlayerAlgorithm::updateStrategyAccordingToFight(const FightInfo& fight)
 {
@@ -287,7 +287,7 @@ void AutoPlayerAlgorithm::notifyOnInitialBoard(const Board & b, const std::vecto
 	{
 		updateStrategyAccordingToFight(*fight);
 	}
-	updateStrategyAccordingToCount();
+	//updateStrategyAccordingToCount();
 
 	findOpponentFlags();
 
@@ -473,7 +473,7 @@ void AutoPlayerAlgorithm::notifyOnOpponentMove(const Move& move)
 
 	mPlayersStrategyBoards[mOpponent - 1].MovePieceWithoutChecks(move.getFrom(), move.getTo());
 	
-	updateStrategyAccordingToCount();
+	//updateStrategyAccordingToCount();
 	findOpponentFlags();
 	updateThreats();
 }
@@ -481,7 +481,7 @@ void AutoPlayerAlgorithm::notifyOnOpponentMove(const Move& move)
 void AutoPlayerAlgorithm::notifyFightResult(const FightInfo & fightInfo)
 {
 	updateStrategyAccordingToFight(fightInfo);
-	updateStrategyAccordingToCount();
+	//updateStrategyAccordingToCount();
 	findOpponentFlags();
 	updateThreats();
 }
