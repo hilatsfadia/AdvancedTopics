@@ -60,13 +60,13 @@ public:
 	bool GetIsThreathening() const { return mIsThreathening; }
 	void SetIsThreathening(bool isThreatening) { mIsThreathening = isThreatening; }
 
-
+	// Returns true iff this piece is the current player piece and discovered by the enemy
 	bool GetIsDiscovered() const { return mIsDiscovered; }
 	void SetIsDiscovered(bool isDiscovered) { mIsDiscovered = isDiscovered; }
 
-
 	int GetStrategyPieceID() const { return mStrategyPieceID; }
 
+	// Returns true iff this piece is stronger than the other piece given
 	virtual bool IsStrongerThan(const StrategyPiece& other) const;
 
 	// TODO: maybe derived class

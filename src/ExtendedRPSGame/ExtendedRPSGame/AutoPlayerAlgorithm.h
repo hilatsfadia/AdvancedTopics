@@ -60,6 +60,7 @@ private:
 	// Retruns true iff the given piece is/might be threatened in the given position
 	bool isThreatenedInPosition(const StrategyPiece& piece, const PointImpl& pos) const;
 
+	// Retruns true iff the given current player's piece is adjacent to an opponents moving piece
 	bool isPlayerAdjacentToOpponentInPosition(const StrategyPiece & piece, const PointImpl & pos) const;
 
 	// Retruns true iff the given piece is/might be threatening in the given position
@@ -88,10 +89,8 @@ private:
 	// getInitialPositions helper functions
 	//-----------------------------------------------------------
 	
-	// Updates the line number according to given isToMoveForward. 
+	// Updates the column number according to given isToMoveRight. 
 	// If true, inc pos, else, dec pos
-	void UpdateLineNumber(int& yPos, bool isToMoveForward) const;
-
 	void UpdateColumnNumber(int & xPos, bool isToMoveRight) const;
 
 	// Init the initial positions for a specific piece type, starting from the given position.
@@ -99,6 +98,7 @@ private:
 	void initPositionsVectorOneType(std::vector<unique_ptr<PiecePosition>>& vectorToFill, int& xPos, int& yPos, bool isToMoveForward, 
 		int count, char typeChar, char jokerReper = NON_JOKER_REP) const;
 
+	// Init the initial positions in the corner of the board
 	void initPositionsVectorCorners(std::vector<unique_ptr<PiecePosition>>& vectorToFill, char typeChar, char jokerReper = NON_JOKER_REP) const;
 
 	// Does the filling of the given vector with the initial positions of the player.
@@ -112,7 +112,9 @@ private:
 	// notifyOnInitialBoard helper functions
 	//-----------------------------------------------------------
 	
-	void initOpponentCoveredPiecesCounter();
+	// Initializes a counter that counts how many of each piece of the 
+	// opponent the current players has not discovered yet
+	// void initOpponentCoveredPiecesCounter();
 
 	// Clears the two players' boards in the given location
 	void ClearPlayersBoardsInPosition(const Point& pos);

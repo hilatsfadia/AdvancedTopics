@@ -133,20 +133,20 @@ void AutoPlayerAlgorithm::getInitialPositions(int player, std::vector<unique_ptr
 	else {
 		mOpponent = FIRST_PLAYER_NUM;
 	}
-	initOpponentCoveredPiecesCounter();
+	//initOpponentCoveredPiecesCounter();
 	initPositionsVector(player, vectorToFill);
 	initTheAlgorithmPlayerBoard(player, vectorToFill);
 }
 
 
-void AutoPlayerAlgorithm::initOpponentCoveredPiecesCounter() { //ADDED
-	mOpponentCoveredPiecesCounter[PAPER_CHAR] = P;
-	mOpponentCoveredPiecesCounter[ROCK_CHAR] = R;
-	mOpponentCoveredPiecesCounter[SCISSORS_CHAR] = S;
-	mOpponentCoveredPiecesCounter[JOKER_CHAR] = J;
-	mOpponentCoveredPiecesCounter[FLAG_CHAR] = F;
-	mOpponentCoveredPiecesCounter[BOMB_CHAR] = B;
-}
+//void AutoPlayerAlgorithm::initOpponentCoveredPiecesCounter() { 
+//	mOpponentCoveredPiecesCounter[PAPER_CHAR] = P;
+//	mOpponentCoveredPiecesCounter[ROCK_CHAR] = R;
+//	mOpponentCoveredPiecesCounter[SCISSORS_CHAR] = S;
+//	mOpponentCoveredPiecesCounter[JOKER_CHAR] = J;
+//	mOpponentCoveredPiecesCounter[FLAG_CHAR] = F;
+//	mOpponentCoveredPiecesCounter[BOMB_CHAR] = B;
+//}
 
 void AutoPlayerAlgorithm::ClearPlayersBoardsInPosition(const Point& pos)
 {
