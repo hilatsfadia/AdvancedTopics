@@ -88,14 +88,14 @@ private:
 	//-----------------------------------------------------------
 	// getInitialPositions helper functions
 	//-----------------------------------------------------------
-	
+
 	// Updates the column number according to given isToMoveRight. 
 	// If true, inc pos, else, dec pos
 	void UpdateColumnNumber(int & xPos, bool isToMoveRight) const;
 
 	// Init the initial positions for a specific piece type, starting from the given position.
 	// Updates the given position to the next position available 
-	void initPositionsVectorOneType(std::vector<unique_ptr<PiecePosition>>& vectorToFill, int& xPos, int& yPos, bool isToMoveForward, 
+	void initPositionsVectorOneType(std::vector<unique_ptr<PiecePosition>>& vectorToFill, int& xPos, int& yPos, bool isToMoveForward,
 		int count, char typeChar, char jokerReper = NON_JOKER_REP) const;
 
 	// Init the initial positions in the corner of the board
@@ -111,7 +111,7 @@ private:
 	//-----------------------------------------------------------
 	// notifyOnInitialBoard helper functions
 	//-----------------------------------------------------------
-	
+
 	// Initializes a counter that counts how many of each piece of the 
 	// opponent the current players has not discovered yet
 	// void initOpponentCoveredPiecesCounter();
@@ -128,9 +128,9 @@ private:
 	//-----------------------------------------------------------
 	// getMove helper functions
 	//-----------------------------------------------------------
-	
+
 	// Fill in the given vector all the pieces which are moving and in the given distance from the flag position
-	void getMovingPiecesInDistanceFromFlag(const PointImpl& flag_pos, 
+	void getMovingPiecesInDistanceFromFlag(const PointImpl& flag_pos,
 		int distance, std::vector<unique_ptr<PointImpl>>& posVectorToFill) const;
 
 	// Get a free place for the piece in the given location, which is closer to the flag position.
@@ -161,7 +161,7 @@ private:
 	//-----------------------------------------------------------
 	// getJokerChange helper functions
 	//-----------------------------------------------------------
-	
+
 	// Change the representation of a threatened joker, and return the change details.
 	unique_ptr<JokerChange> changeThreatenedJoker(const Point& pos);
 
@@ -177,6 +177,7 @@ public:
 	virtual unique_ptr<Move> getMove() override;
 	virtual unique_ptr<JokerChange> getJokerChange() override; // nullptr if no change is requested
 };
+
 
 
 #endif //ADTO_TARGIL1_UNCOVEREDPIECE_H
