@@ -189,7 +189,7 @@ void AutoPlayerAlgorithm::updateStrategyAccordingToBoard(const Board & b)
 	}
 }
 
-//void AutoPlayerAlgorithm::updateStrategyAccordingToCount() { //TODO: where to call it?. ADDED
+//void AutoPlayerAlgorithm::updateStrategyAccordingToCount() { //TODO: where to call it?. 
 //	char pieceToUpdate;
 //
 //	for (std::map<char,int>::iterator iter = mOpponentCoveredPiecesCounter.begin(); iter != mOpponentCoveredPiecesCounter.end(); iter++) {
@@ -260,9 +260,9 @@ void AutoPlayerAlgorithm::updateStrategyAccordingToFight(const FightInfo& fight)
 	{
 		mPlayersStrategyBoards[mOpponent - 1].ClearBoardInPosition(fight.getPosition());
 		StrategyPiece& PlayerStrategyPiece = mPlayersStrategyBoards[mPlayer - 1].PeekPieceInPosition(fight.getPosition());
-		PlayerStrategyPiece.SetIsDiscovered(true); //ADDED
+		PlayerStrategyPiece.SetIsDiscovered(true); 
 	}
-	mOpponentCoveredPiecesCounter[fight.getPiece(mOpponent)]--; //ADDED
+	/*mOpponentCoveredPiecesCounter[fight.getPiece(mOpponent)]--; */
 }
 
 void AutoPlayerAlgorithm::findOpponentFlags() 
@@ -281,7 +281,7 @@ void AutoPlayerAlgorithm::findOpponentFlags()
 						&& (!piece.GetIsMovingPiece())) // TODO: ask why is it needed
 					{
 						piece.UncoverPiece(FLAG_CHAR);
-						mOpponentCoveredPiecesCounter[FLAG_CHAR]--; //ADDED
+						//mOpponentCoveredPiecesCounter[FLAG_CHAR]--; 
 						mOpponentNumCoveredPieces--;
 						mOpponentFlagLocations.push_back(PointImpl(col, row));
 					}
@@ -592,7 +592,7 @@ bool AutoPlayerAlgorithm::isPieceToMove(const StrategyPiece& strategyPiece, Auto
 		{
 			// Joker doesn't run away, it can change it representation.
 			isRelevantPiece = isRelevantPiece && 
-				(strategyPiece.GetIsThreatened() || (isPlayerAdjacentToOpponentInPosition(strategyPiece, from) && strategyPiece.GetIsDiscovered())) //ADDED
+				(strategyPiece.GetIsThreatened() || (isPlayerAdjacentToOpponentInPosition(strategyPiece, from) && strategyPiece.GetIsDiscovered()))
 				&& (strategyPiece.GetPieceType() != PieceType::Joker);
 			break;
 

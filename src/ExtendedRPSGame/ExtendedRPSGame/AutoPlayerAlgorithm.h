@@ -39,7 +39,7 @@ private:
 	std::vector<PointImpl> mOpponentFlagLocations;
 	std::vector<PointImpl> mPlayerJokerLocations;
 	//int lastMovedPieceID = NONE;
-	std::map <char, int> mOpponentCoveredPiecesCounter;
+	/*std::map <char, int> mOpponentCoveredPiecesCounter;*/
 
 
 	enum class MoveType { RunAway, Attack, TowardsFlag, Random };
