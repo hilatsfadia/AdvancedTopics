@@ -7,19 +7,6 @@
 #include "Joker.h"
 #include <memory>
 
-int StrategyPiece::mStrategyPiecesCounter = 1;
-
-StrategyPiece::StrategyPiece(int ownerNum, unique_ptr<Piece> uncoveredPiece) : Piece(ownerNum)
-{
-	if (uncoveredPiece != nullptr)
-	{
-		UncoverPiece(std::move(uncoveredPiece));
-	}
-
-	mStrategyPieceID = mStrategyPiecesCounter;
-	mStrategyPiecesCounter++;
-}
-
 PieceType StrategyPiece::GetPieceType() const
 {
 	return ((mUncoveredPiece == nullptr) ? PieceType::Covered : mUncoveredPiece->GetPieceType());
@@ -103,25 +90,25 @@ void StrategyPiece::ChangeJokerToStronger(PieceType enemyPieceType)
 	{
 		switch (enemyPieceType)
 		{
-			case (PieceType::Paper):
-			{
-				mUncoveredPiece = std::make_unique<Joker>(mOwnerNum, std::make_unique<Scissors>(mOwnerNum));
-				break;
-			}
-			case (PieceType::Scissors):
-			{
-				mUncoveredPiece = std::make_unique<Joker>(mOwnerNum, std::make_unique<Rock>(mOwnerNum));
-				break;
-			}
-			case (PieceType::Rock):
-			{
-				mUncoveredPiece = std::make_unique<Joker>(mOwnerNum, std::make_unique<Paper>(mOwnerNum));
-				break;
-			}
-			default:
-			{
-				break;
-			}
+		case (PieceType::Paper):
+		{
+			mUncoveredPiece = std::make_unique<Joker>(mOwnerNum, std::make_unique<Scissors>(mOwnerNum));
+			break;
+		}
+		case (PieceType::Scissors):
+		{
+			mUncoveredPiece = std::make_unique<Joker>(mOwnerNum, std::make_unique<Rock>(mOwnerNum));
+			break;
+		}
+		case (PieceType::Rock):
+		{
+			mUncoveredPiece = std::make_unique<Joker>(mOwnerNum, std::make_unique<Paper>(mOwnerNum));
+			break;
+		}
+		default:
+		{
+			break;
+		}
 		}
 	}
 }

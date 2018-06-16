@@ -39,10 +39,8 @@ private:
 	std::vector<PointImpl> mOpponentFlagLocations;
 	std::vector<PointImpl> mPlayerJokerLocations;
 	//int lastMovedPieceID = NONE;
-	/*std::map <char, int> mOpponentCoveredPiecesCounter;*/
 
-
-	enum class MoveType { RunAway, Attack, TowardsFlag, Random };
+	enum class MoveType { RunAwayThreatened, RunAwayDiscovered, Attack, TowardsFlag, Random };
 
 	//-----------------------------------------------------------
 	// General helper functions
@@ -58,13 +56,15 @@ private:
 	void FillAdjacentLegalPositions(const Point& pos, std::vector<unique_ptr<PointImpl>>& vectorToFill) const;
 
 	// Retruns true iff the given piece is/might be threatened in the given position
-	bool isThreatenedInPosition(const StrategyPiece& piece, const PointImpl& pos) const;
-
-	// Retruns true iff the given current player's piece is adjacent to an opponents moving piece
-	bool isPlayerAdjacentToOpponentInPosition(const StrategyPiece & piece, const PointImpl & pos) const;
+	// if isToCheckStronger is false, retruns true iff the given current player's piece is discovered and
+	// adjacent to an opponents moving piece
+	bool isThreatenedInPosition(const StrategyPiece& piece, const PointImpl& pos, bool isToCheckStronger, bool isToCheckDicovered) const;
 
 	// Retruns true iff the given piece is/might be threatening in the given position
 	bool isThreateningInPosition(const StrategyPiece& piece, const PointImpl& pos) const;
+
+	// If a joker lost a fight, it should be removed from the vector
+	void updateJokerLocationsAccordingToFight(const FightInfo& fight, int winner);
 
 	// Updates the strategy inner represantations according to the given fight information.
 	void updateStrategyAccordingToFight(const FightInfo& fight);
@@ -112,17 +112,11 @@ private:
 	// notifyOnInitialBoard helper functions
 	//-----------------------------------------------------------
 
-	// Initializes a counter that counts how many of each piece of the 
-	// opponent the current players has not discovered yet
-	// void initOpponentCoveredPiecesCounter();
-
 	// Clears the two players' boards in the given location
 	void ClearPlayersBoardsInPosition(const Point& pos);
 
 	// Updates the strategy inner represantations according to the given board.
 	void updateStrategyAccordingToBoard(const Board& b);
-
-	//void updateStrategyAccordingToCount();
 
 
 	//-----------------------------------------------------------
@@ -147,7 +141,7 @@ private:
 	unique_ptr<PointImpl> getStrategyDestination(const StrategyPiece& piece, const PointImpl& from, MoveType moveType) const;
 
 	// Return true iff the given piece has to be moved according to the given MoveType
-	bool isPieceToMove(const StrategyPiece& strategyPiece, MoveType moveType, const PointImpl& from) const;
+	bool isPieceToMove(const StrategyPiece& strategyPiece, MoveType moveType) const;
 
 	// Get a move according to the given MoveType in the given row
 	unique_ptr<Move> getStrategyMoveInPosition(MoveType moveType, int row, int col) const;

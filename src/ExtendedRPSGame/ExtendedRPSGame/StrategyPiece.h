@@ -19,17 +19,15 @@ class StrategyPiece :
 	public Piece
 {
 private:
-	static int mStrategyPiecesCounter;
-	int mStrategyPieceID;
 	unique_ptr<Piece> mUncoveredPiece = nullptr;
-	bool mIsThreatened = false;
+	bool mIsThreatenedByStronger = false;
 	bool mIsThreathening = false;
 	bool mIsMovingPiece = false;
 	bool mIsDiscovered = false; // Is curr player piece discovered by the opponent
+	bool mIsThreatenedBecauseDiscovered = false;
 
 public:
-	StrategyPiece(int ownerNum, unique_ptr<Piece> uncoveredPiece);
-	StrategyPiece(int ownerNum) : StrategyPiece(ownerNum, nullptr) { }
+	StrategyPiece(int ownerNum) : Piece(ownerNum) { }
 
 	// Gets this piece type.
 	// If this piece is still covered, gets PieceType::Unknown.
@@ -53,8 +51,8 @@ public:
 	void UncoverPiece(char uncoveredPieceChar);
 
 	// Returns true iff this piece is threatened by an enemy piece (one or more)
-	bool GetIsThreatened() const { return mIsThreatened; }
-	void SetIsThreatened(bool isThreatend) { mIsThreatened = isThreatend; }
+	bool GetIsThreatenedByStronger() const { return mIsThreatenedByStronger; }
+	void SetIsThreatenedByStronger(bool isThreatenedByStronger) { mIsThreatenedByStronger = isThreatenedByStronger; }
 
 	// Returns true iff this piece is threatening an enemy piece (one or more)
 	bool GetIsThreathening() const { return mIsThreathening; }
@@ -64,7 +62,9 @@ public:
 	bool GetIsDiscovered() const { return mIsDiscovered; }
 	void SetIsDiscovered(bool isDiscovered) { mIsDiscovered = isDiscovered; }
 
-	int GetStrategyPieceID() const { return mStrategyPieceID; }
+	// Returns true iff this piece is the current player piece and is adjacent to an enemy piece and discovered
+	bool GetIsThreatenedBecauseDiscovered() const { return mIsThreatenedBecauseDiscovered; }
+	void SetIsThreatenedBecauseDiscovered(bool isThreatenedBecauseDiscovered) { mIsThreatenedBecauseDiscovered = isThreatenedBecauseDiscovered; }
 
 	// Returns true iff this piece is stronger than the other piece given
 	virtual bool IsStrongerThan(const StrategyPiece& other) const;
